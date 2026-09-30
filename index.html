@@ -198,12 +198,12 @@ a.mock:hover{transform:translateY(-4px);border-color:var(--blue2)}
 <a class="row wa-link" data-text="Hello AlyneTech, I'd like to discuss a project." href="https://wa.me/2349120280733"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.1-1.3A10 10 0 1 0 12 2zm5.2 13.9c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.4.1.6-.1l.8-1c.2-.3.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg><span><small>WhatsApp</small><b>0912 028 0733</b></span></a>
 <a class="row em-link" href="mailto:abiolamichael68@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><span><small>Email</small><b>abiolamichael68@gmail.com</b></span></a>
 </div></div>
-<form id="f" novalidate action="https://formsubmit.co/abiolamichael68@gmail.com" method="POST">
+<form id="f" novalidate action="https://api.web3forms.com/submit" method="POST">
 <h3>Send me a message</h3>
 <label for="n">Your name</label><input id="n" name="name" autocomplete="name">
 <label for="c">Your email or phone number</label><input id="c" name="contact" autocomplete="email">
 <label for="m">How can we help you?</label><textarea id="m" name="message"></textarea>
-<input type="hidden" name="_subject" value="New enquiry from AlyneTech website"><input type="hidden" name="_template" value="table"><input type="hidden" name="_captcha" value="false"><input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+<input type="hidden" name="access_key" value="dbb55c2a-fdcc-47ff-bc99-039dc5991dd7"><input type="hidden" name="subject" value="New enquiry from AlyneTech website"><input type="hidden" name="from_name" value="AlyneTech Website"><input type="checkbox" name="botcheck" style="display:none" tabindex="-1" aria-hidden="true">
 <button type="submit" class="btn blue" id="sb">Send message</button>
 <p class="st" id="st" role="status"></p>
 <div class="fbtn"><button type="button" class="btn wa sm" id="sw">Send on WhatsApp instead</button><button type="button" class="btn ghost sm" id="se">Send by email instead</button></div>
@@ -227,11 +227,11 @@ var f=document.getElementById('f'),st=document.getElementById('st'),sb=document.
 function say(t,err){st.textContent=t;st.className='st'+(err?' err':'')}
 f.addEventListener('submit',function(e){e.preventDefault();
 var n=document.getElementById('n').value.trim(),c=document.getElementById('c').value.trim(),m=document.getElementById('m').value.trim();
-if(f.elements['_honey'].value){return}
+if(f.elements['botcheck'].checked){return}
 if(!n||!c||!m){say('Please fill in your name, contact and message.',true);return}
 sb.disabled=true;say('Sending...');
-fetch('https://formsubmit.co/ajax/abiolamichael68@gmail.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
-body:JSON.stringify({name:n,contact:c,message:m,_subject:'New enquiry from AlyneTech website',_template:'table'})})
+fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+body:JSON.stringify({access_key:'dbb55c2a-fdcc-47ff-bc99-039dc5991dd7',subject:'New enquiry from AlyneTech website',from_name:'AlyneTech Website',name:n,contact:c,email:(c.indexOf('@')>0?c:''),message:m})})
 .then(function(r){return r.json()})
 .then(function(d){if(d&&(d.success===true||d.success==='true')){say('Thank you! Your message has been sent. I will reply soon.');f.reset()}else{say((d&&d.message)?d.message:'Sorry, your message could not be sent. Please use WhatsApp or email below.',true)}})
 .catch(function(){say('Sending...');f.submit()})
