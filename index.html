@@ -153,7 +153,15 @@ header{animation:down .6s ease backwards}
 .wa-fab .tip{position:absolute;right:72px;background:#fff;color:#06260F;font:600 14px Inter,sans-serif;padding:8px 14px;border-radius:8px;white-space:nowrap;box-shadow:0 6px 18px rgba(0,0,0,.25);opacity:0;transform:translateX(8px);transition:.2s;pointer-events:none}
 .wa-fab:hover .tip{opacity:1;transform:none}
 @media(max-width:600px){.wa-fab .tip{display:none}.wa-fab{width:56px;height:56px;right:16px}}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.js .rv{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){
+html{scroll-behavior:auto}
+.hero::before,.wa-fab::before{animation:none}
+@keyframes up{from{opacity:0}to{opacity:1}}
+@keyframes down{from{opacity:0}to{opacity:1}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes pop{from{opacity:0}to{opacity:1}}
+.js .rv{transform:none;transition:opacity .6s ease}
+}
 
 /* upgrades */
 .pg{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--blue),var(--blue2));z-index:60}
@@ -207,7 +215,7 @@ header.sc{box-shadow:0 8px 28px rgba(0,0,0,.28)}
 <div class="mock"><div class="top"><i></i><i></i><i></i><div class="url">Recent projects</div></div>
 <div class="body"><p class="cap">Websites I have built for real clients</p>
 <a class="pj" href="https://lizbethoptical.vercel.app/" target="_blank" rel="noopener"><span><b>Lizbeth Opticals</b><small>Opticians in Ota, Ogun State</small></span><em>Visit &rarr;</em></a>
-<button type="button" class="pj" data-proj="t2"><span><b>Rtfabrics</b><small>Fabric seller with WhatsApp ordering</small></span><em>View &rarr;</em></button>
+<a class="pj" href="https://rtfabrics.vercel.app/" target="_blank" rel="noopener"><span><b>Rtfabrics</b><small>Fabric seller with WhatsApp ordering</small></span><em>Visit &rarr;</em></a>
 <button type="button" class="vs" data-go="work">See all recent projects</button></div></div>
 </div></div>
 
@@ -237,10 +245,11 @@ header.sc{box-shadow:0 8px 28px rgba(0,0,0,.28)}
 <p>A website for an optician in Ota, Ogun State. It presents eye tests, prescription lenses, frames and contact lenses, and lets customers call the shop straight from the page.</p>
 <div class="tags"><span>Business website</span><span>Mobile-friendly</span><span>Click-to-call</span></div>
 <a class="btn blue" href="https://lizbethoptical.vercel.app/" target="_blank" rel="noopener">Visit site</a></div></div>
-<div class="work" id="p2" role="tabpanel" aria-labelledby="t2" hidden><div class="pv" aria-hidden="true"><b>Rtfabrics</b><span>Fine fabrics, delivered nationwide</span></div>
+<div class="work" id="p2" role="tabpanel" aria-labelledby="t2" hidden><div class="pv" aria-hidden="true"><b>Rtfabrics</b><span>rtfabrics.vercel.app</span></div>
 <div class="tx"><h3>Rtfabrics</h3>
 <p>A website for a fabric seller in Nigeria. Customers browse the fabric gallery and videos, fill in an order form that opens in WhatsApp ready to send, and follow up on their order with one tap.</p>
-<div class="tags"><span>Online ordering</span><span>WhatsApp orders</span><span>Gallery and videos</span></div></div></div>
+<div class="tags"><span>Online ordering</span><span>WhatsApp orders</span><span>Gallery and videos</span></div>
+<a class="btn blue" href="https://rtfabrics.vercel.app/" target="_blank" rel="noopener">Visit site</a></div></div>
 </div></section>
 
 <section id="process" class="band"><div class="wrap">
